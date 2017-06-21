@@ -759,17 +759,6 @@ public class SyncHttpClient {
                 responseBody = EntityUtils.toString(bufferEntity, ENCODE_UTF8);
                 NLog.e(tag, "responseBody : " + responseBody);
             }
-
-            // get cookie to save local  获取 cookie 存入本地
-//			Header[] headers = response.getHeaders("Set-Cookie");
-//	        if (headers != null && headers.length > 0) {
-//	        	for(int i=0;i<headers.length;i++) {
-//	        		String cookie = headers[i].getValue();
-//	        		BasicClientCookie newCookie = new BasicClientCookie("cookie"+i, cookie);
-//	        		cookieStore.addCookie(newCookie);
-//	        	}
-//	        }
-
             SaveCookies(response);
         } catch (Exception e) {
             e.printStackTrace();

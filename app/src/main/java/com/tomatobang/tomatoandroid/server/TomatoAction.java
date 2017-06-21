@@ -47,16 +47,16 @@ public class TomatoAction extends BaseAction {
     /**
      * 注册
      *
-     * @param nickname           昵称
+     * @param username           用户名
      * @param password           密码
      * @param verification_token 验证码
      * @throws HttpException
      */
-    public RegisterResponse register(String nickname, String password, String verification_token) throws HttpException {
+    public RegisterResponse register(String username, String password, String verification_token) throws HttpException {
         String url = getURL("user/register");
         StringEntity entity = null;
         try {
-            entity = new StringEntity(JsonMananger.beanToJson(new RegisterRequest(nickname, password, verification_token)), ENCODING);
+            entity = new StringEntity(JsonMananger.beanToJson(new RegisterRequest(username, password, verification_token)), ENCODING);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
