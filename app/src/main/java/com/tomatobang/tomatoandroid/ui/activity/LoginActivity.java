@@ -6,7 +6,7 @@ import android.annotation.TargetApi;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
+// import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
 
 import android.content.CursorLoader;
@@ -32,14 +32,19 @@ import android.widget.TextView;
 import com.tomatobang.tomatoandroid.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+
+import  com.tomatobang.tomatoandroid.server.utils.HttpUtils;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+public class LoginActivity extends BaseActivity implements LoaderCallbacks<Cursor> {
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -316,6 +321,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 return false;
             }
 
+            Map<String,String> postParams = new HashMap<String,String>();
+            postParams.put("mEmail", mEmail);
+            postParams.put("mPassword", mPassword);
+            String strUrlPath = "http://115.29.51.196:5555/login";
+            // 这里是真实的登陆逻辑
+            String strResult=HttpUtils.submitPostData(strUrlPath,postParams, "utf-8");
+
+
+            // Demo 在这里模拟登陆逻辑
             for (String credential : DUMMY_CREDENTIALS) {
                 String[] pieces = credential.split(":");
                 if (pieces[0].equals(mEmail)) {
