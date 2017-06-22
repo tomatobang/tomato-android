@@ -3,6 +3,7 @@ package com.tomatobang.tomatoandroid.ui.activity;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -186,7 +187,13 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
             // perform the user login attempt.
             showProgress(true);
             mAuthTask = new UserLoginTask(username, password);
-            mAuthTask.execute((Void) null);
+
+            // 直接跳转至 Main
+            Intent intent = new Intent();
+            intent.setClass(LoginActivity.this, MainActivity.class);
+            LoginActivity.this.startActivity(intent);
+            // 这行程序会直接关闭 APP
+            // mAuthTask.execute((Void) null);
         }
     }
     private boolean isUsernameValid(String email) {
