@@ -36,7 +36,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+import  android.util.Log;
 import  com.tomatobang.tomatoandroid.server.utils.HttpUtils;
 
 import static android.Manifest.permission.READ_CONTACTS;
@@ -52,19 +52,12 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
     private static final int REQUEST_READ_CONTACTS = 0;
 
     /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "pengyi123", "ppyy123"
-    };
-    /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
     private UserLoginTask mAuthTask = null;
 
     // UI references.
-    private AutoCompleteTextView mEmailView;
+    private AutoCompleteTextView mUsernameView;
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
@@ -74,7 +67,7 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.user);
+        mUsernameView = (AutoCompleteTextView) findViewById(R.id.user);
         populateAutoComplete();
 
         mPasswordView = (EditText) findViewById(R.id.password);
@@ -89,8 +82,8 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
             }
         });
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.user_sign_in_button);
-        mEmailSignInButton.setOnClickListener(new OnClickListener() {
+        Button mUserSignInButton = (Button) findViewById(R.id.user_sign_in_button);
+        mUserSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 attemptLogin();
@@ -117,7 +110,7 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
             return true;
         }
         if (shouldShowRequestPermissionRationale(READ_CONTACTS)) {
-            Snackbar.make(mEmailView, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
+            Snackbar.make(mUsernameView, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
                     .setAction(android.R.string.ok, new View.OnClickListener() {
                         @Override
                         @TargetApi(Build.VERSION_CODES.M)
@@ -156,11 +149,11 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
         }
 
         // Reset errors.
-        mEmailView.setError(null);
+        mUsernameView.setError(null);
         mPasswordView.setError(null);
 
         // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
+        String username = mUsernameView.getText().toString();
         String password = mPasswordView.getText().toString();
 
         boolean cancel = false;
@@ -174,13 +167,13 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
         }
 
         // Check for a valid email address.
-        if (TextUtils.isEmpty(email)) {
-            mEmailView.setError(getString(R.string.error_field_required));
-            focusView = mEmailView;
+        if (TextUtils.isEmpty(username)) {
+            mUsernameView.setError(getString(R.string.error_field_required));
+            focusView = mUsernameView;
             cancel = true;
-        } else if (!isEmailValid(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_username));
-            focusView = mEmailView;
+        } else if (!isUsernameValid(username)) {
+            mUsernameView.setError(getString(R.string.error_invalid_username));
+            focusView = mUsernameView;
             cancel = true;
         }
 
@@ -192,13 +185,13 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
+            mAuthTask = new UserLoginTask(username, password);
             mAuthTask.execute((Void) null);
         }
     }
-    private boolean isEmailValid(String email) {
+    private boolean isUsernameValid(String email) {
         //TODO: Replace this with your own logic
-        return email.contains("@");
+        return true;
     }
 
     private boolean isPasswordValid(String password) {
@@ -293,7 +286,7 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
                 new ArrayAdapter<>(LoginActivity.this,
                         android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
 
-        mEmailView.setAdapter(adapter);
+        mUsernameView.setAdapter(adapter);
     }
 
     /**
@@ -302,12 +295,12 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
      */
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
-        private final String mEmail;
-        private final String mPassword;
+        private final String userName;
+        private final String Password;
 
-        UserLoginTask(String email, String password) {
-            mEmail = email;
-            mPassword = password;
+        UserLoginTask(String name, String password) {
+            userName = name;
+            Password = password;
         }
 
         @Override
@@ -322,23 +315,14 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
             }
 
             Map<String,String> postParams = new HashMap<String,String>();
-            postParams.put("mEmail", mEmail);
-            postParams.put("mPassword", mPassword);
-            String strUrlPath = "http://115.29.51.196:5555/login";
+            postParams.put("name", userName);
+            postParams.put("password", Password);
+            Log.v("name:",userName);
+            Log.v("password:",Password);
+            String strUrlPath = "http://115.29.51.196:5555/api/login/";
             // 这里是真实的登陆逻辑
             String strResult=HttpUtils.submitPostData(strUrlPath,postParams, "utf-8");
-
-
-            // Demo 在这里模拟登陆逻辑
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
-                }
-            }
-
-            // TODO: register the new account here.
+            Log.v("tomatobang返回:",strResult);
             return true;
         }
 
