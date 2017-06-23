@@ -9,13 +9,14 @@ import android.view.ViewGroup;
 import com.tomatobang.tomatoandroid.R;
 
 /**
+ *
  * Created by caobotao on 16/1/4.
  */
-public class WeixinFragment extends Fragment {
+public class AboutFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.tab1, container, false);
+        View view = inflater.inflate(R.layout.about_tab, container, false);
         return view;
     }
 }

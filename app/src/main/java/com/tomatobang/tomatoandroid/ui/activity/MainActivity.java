@@ -49,10 +49,10 @@ public class MainActivity extends BaseActivity implements OnClickListener {
     private void initDatas() {
         mFragments = new ArrayList<>();
         //将四个Fragment加入集合中
-        mFragments.add(new WeixinFragment());
-        mFragments.add(new FrdFragment());
-        mFragments.add(new AddressFragment());
+        mFragments.add(new IndexFragment());
+        mFragments.add(new HistoryFragment());
         mFragments.add(new SettingFragment());
+        mFragments.add(new AboutFragment());
 
         //初始化适配器
         mAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {

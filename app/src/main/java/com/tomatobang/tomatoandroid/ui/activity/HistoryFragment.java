@@ -7,14 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.tomatobang.tomatoandroid.R;
-/**
- * Created by caobotao on 16/1/4.
- */
-public class FrdFragment extends Fragment {
+
+
+public class HistoryFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.tab2, container, false);
+        View view = inflater.inflate(R.layout.history_tab, container, false);
         return view;
     }
 }
