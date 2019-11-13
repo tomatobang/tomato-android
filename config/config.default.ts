@@ -8,13 +8,6 @@ export type DefaultConfig = PowerPartial<EggAppConfig & BizConfig>;
 
 // 应用本身的配置 Scheme
 export interface BizConfig {
-  ratelimit: {
-    duration: number;
-    throw: boolean;
-    errorMessage: string;
-    max: number;
-  };
-
   robot: {
     ua: any;
   };
