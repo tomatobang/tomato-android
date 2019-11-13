@@ -8,6 +8,7 @@
     "typescript": true
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "consul": "^0.36.0",
     "egg": "^2.15.1",
     "egg-mongoose": "^2.1.1",

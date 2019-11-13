@@ -23,7 +23,7 @@ export default () => {
     },
   };
 
-  config.keys = 'com.server.tomatobill';
+  config.keys = 'com.server.tomatouser';
   config.middleware = ['errorhandler'];
 
   config.consul = {
@@ -78,8 +78,13 @@ export default () => {
   };
 
   config.mongoose = {
-    url: 'mongodb://127.0.0.1:27017/tomatobang',
+    url: 'mongodb://127.0.0.1:27017/tomato-user',
     options: {},
+  };
+
+  config.token = {
+    tokenSecret: env.tokenSecret || 'tomatobang',
+    tokenExpiresIn: env.tokenExpiresIn || '3d',
   };
 
   config.serverPort = {
