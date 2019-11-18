@@ -87,8 +87,5 @@ export default () => {
     tokenExpiresIn: env.tokenExpiresIn || '3d',
   };
 
-  config.serverPort = {
-    serverPort: env.serverPort || 3000,
-  };
   return config;
 };

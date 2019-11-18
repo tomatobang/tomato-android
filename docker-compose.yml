@@ -1,0 +1,11 @@
+version: '3'
+services:
+  tb_user:
+    restart: unless-stopped
+    image: tb/tomato-user                 
+    environment:
+      CONSUL_IP:
+      DATABASE_MONGODB_USERNAME_PASSWORD:
+      DATABASE_MONGODB_HOST_PORT:
+    ports:
+     - "8001:8001"
