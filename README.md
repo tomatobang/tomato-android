@@ -13,7 +13,7 @@ see [egg docs][egg] for more detail.
 ```bash
 $ npm i
 $ npm run dev
-$ open http://localhost:8001/
+$ open http://localhost:10001/
 ```
 
 ### Deploy
@@ -31,3 +31,7 @@ $ npm stop
 
 
 [egg]: https://eggjs.org
+
+### Todo
+
+1. not install dev dependency in prod mode.

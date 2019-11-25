@@ -1,7 +1,7 @@
 {
   "name": "tomato-user",
   "version": "1.0.0",
-  "description": "bill module for tomatobang",
+  "description": "user module for tomatobang",
   "private": true,
   "egg": {
     "declarations": true,

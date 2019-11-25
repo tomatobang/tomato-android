@@ -12,4 +12,4 @@ services:
       DATABASE_MONGODB_USERNAME_PASSWORD:
       DATABASE_MONGODB_HOST_PORT:
     ports:
-     - "10001:9001"
+     - "10001:10001"

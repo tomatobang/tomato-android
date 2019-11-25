@@ -19,7 +19,7 @@ export default () => {
 
   config.cluster = {
     listen: {
-      port: 8001,
+      port: 10001,
     },
   };
 
