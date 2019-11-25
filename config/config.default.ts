@@ -82,6 +82,15 @@ export default () => {
     options: {},
   };
 
+  config.redis = {
+    client: {
+      port: 6379,
+      host: '127.0.0.1',
+      password: '',
+      db: 0,
+    },
+  };
+
   config.token = {
     tokenSecret: env.tokenSecret || 'tomatobang',
     tokenExpiresIn: env.tokenExpiresIn || '3d',

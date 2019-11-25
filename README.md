@@ -32,6 +32,15 @@ $ npm stop
 
 [egg]: https://eggjs.org
 
+### Docker
+
+#### build
+
+```bash
+docker build -t tb/tomato-user .
+docker-compose up
+```
+
 ### Todo
 
 1. not install dev dependency in prod mode.
